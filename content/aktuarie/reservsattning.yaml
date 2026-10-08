@@ -1,0 +1,58 @@
+name: Reservsättning
+description: Skadereserver, IBNR, utvecklingstrianglar och metoder
+items:
+  - type: term
+    term: IBNR
+    definition: Incurred But Not Reported. Reserv för skador som har inträffat men ännu inte anmälts till bolaget.
+  - type: term
+    term: IBNER
+    definition: Incurred But Not Enough Reported. Reserv för förväntad framtida utveckling på redan anmälda skador, utöver den individuella reserven.
+  - type: term
+    term: RBNS
+    definition: Reported But Not Settled. Reserv för anmälda men ännu inte slutreglerade skador, ofta satt individuellt av skadereglerare.
+  - type: term
+    term: Chain ladder
+    definition: Reservsättningsmetod där historiska utvecklingsfaktorer från en triangel används för att projicera kumulerade skadekostnader till slutkostnad.
+  - type: term
+    term: Bornhuetter-Ferguson
+    definition: Metod som kombinerar en a priori-förväntad slutkostnad (t.ex. premie × förväntad skadeprocent) med faktisk utveckling, viktat med andelen som väntas vara utvecklad.
+  - type: term
+    term: Utvecklingsfaktor
+    definition: Kvoten mellan kumulerad skadekostnad i en utvecklingsperiod och den föregående, för ett givet skadeår. Används i chain ladder.
+  - type: term
+    term: Tail factor
+    definition: Faktor som fångar utveckling bortom sista observerade utvecklingsperioden i triangeln, så att reserven täcker hela run-off-perioden.
+  - type: term
+    term: Run-off
+    definition: Hur tidigare års reserver utvecklas mot faktiska utbetalningar. Positiv run-off betyder att reserven var större än vad som behövdes.
+  - type: term
+    term: Skadeår
+    definition: Det år skadan inträffade (accident year). Grund för radindelning i en utvecklingstriangel.
+  - type: truefalse
+    statement: IBNR-reserven avser skador som är anmälda men inte färdigreglerade.
+    answer: false
+    explanation: Det är RBNS. IBNR avser skador som inträffat men ännu inte anmälts.
+  - type: truefalse
+    statement: Bornhuetter-Ferguson är mindre känslig än chain ladder för enstaka avvikande värden i de senaste skadeåren.
+    answer: true
+    explanation: BF väger in en a priori-förväntan, vilket stabiliserar skattningen när faktisk utveckling är tunn.
+  - type: mcq
+    question: Vilken metod lämpar sig bäst för ett ungt skadeår med mycket lite faktisk utveckling?
+    options:
+      - Chain ladder
+      - Bornhuetter-Ferguson
+      - Ren utbetalningsstatistik
+      - Individuell reservsättning per skada
+    correct: 1
+    explanation: Med lite data ger chain ladder instabila skattningar. BF lutar sig mot en a priori-förväntan.
+  - type: qa
+    question: Vad betyder en negativ run-off för ett skadeår?
+    answer: Att reserven som sattes vid tidigare bokslut var för liten. Faktisk slutkostnad blev högre än reserverat, vilket belastar årets resultat.
+  - type: order
+    prompt: Ordna stegen i en enkel chain ladder-beräkning
+    steps:
+      - Bygg en kumulerad utvecklingstriangel per skadeår
+      - Beräkna utvecklingsfaktorer mellan utvecklingsperioder
+      - Välj faktorer (t.ex. volymvägt medel) och eventuell tail factor
+      - Projicera varje skadeår till slutkostnad
+      - Reserv = projicerad slutkostnad minus hittills utbetalt

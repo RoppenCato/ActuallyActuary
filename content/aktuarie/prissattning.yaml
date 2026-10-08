@@ -1,0 +1,37 @@
+name: Prissättning
+description: Riskpremie, tariffer och modellering
+items:
+  - type: term
+    term: Riskpremie
+    definition: Förväntad skadekostnad per försäkring och tidsenhet. Skadefrekvens gånger medelskada.
+  - type: term
+    term: Skadefrekvens
+    definition: Antal skador delat med antal riskår (exponering).
+  - type: term
+    term: Medelskada
+    definition: Total skadekostnad delat med antal skador. Severity.
+  - type: term
+    term: GLM
+    definition: Generaliserad linjär modell. Standardverktyg för tariffering där frekvens ofta modelleras med Poisson och medelskada med gamma, med logaritmisk länkfunktion.
+  - type: term
+    term: Exponering
+    definition: Mått på hur mycket risk som varit försäkrad, oftast antal riskår. Nämnare i frekvensberäkningar.
+  - type: term
+    term: Tariff
+    definition: Regelverk som bestämmer premien utifrån riskfaktorer, t.ex. djurets ras, ålder och geografi.
+  - type: truefalse
+    statement: Riskpremien inkluderar driftkostnader och vinstmarginal.
+    answer: false
+    explanation: Riskpremien är bara förväntad skadekostnad. Driftkostnader och marginal läggs på för att få bruttopremien.
+  - type: mcq
+    question: Vilken fördelning används typiskt för skadefrekvens i en GLM?
+    options:
+      - Normal
+      - Gamma
+      - Poisson
+      - Lognormal
+    correct: 2
+    explanation: Poisson (eller negativ binomial vid överspridning) för antal. Gamma används ofta för medelskada.
+  - type: qa
+    question: Varför används logaritmisk länkfunktion i tariff-GLM?
+    answer: Den ger en multiplikativ tariff där varje riskfaktor blir en faktor som multipliceras med baspremien. Det är lätt att tolka och säkerställer positiva premier.

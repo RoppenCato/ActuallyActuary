@@ -1,0 +1,39 @@
+name: Bokslut
+description: Kvartalsbokslut, nyckelkontroller och rapportering
+items:
+  - type: term
+    term: Combined ratio
+    definition: Skadeprocent plus driftkostnadsprocent. Under 100 % betyder att försäkringsrörelsen går med vinst före kapitalavkastning.
+  - type: term
+    term: Skadeprocent
+    definition: Skadekostnad (inklusive reservförändring) delat med intjänad premie. Loss ratio.
+  - type: term
+    term: Intjänad premie
+    definition: Den del av tecknad premie som hör till den risktid som förflutit under perioden. Earned premium.
+  - type: term
+    term: Premiereserv
+    definition: Reserv för den del av premien som avser återstående risktid efter balansdagen. Under Solvens II beräknas den som bästa skattning av framtida kassaflöden för ingångna avtal.
+  - type: term
+    term: Bästa skattning
+    definition: Best estimate. Sannolikhetsvägt medelvärde av framtida kassaflöden, diskonterat med riskfri ränta. Grund för tekniska avsättningar under Solvens II.
+  - type: term
+    term: Riskmarginal
+    definition: Tillägg till bästa skattningen under Solvens II som motsvarar kostnaden för att hålla kapital för att täcka åtagandena till run-off. Beräknas med cost-of-capital-metoden.
+  - type: truefalse
+    statement: Combined ratio inkluderar kapitalavkastning.
+    answer: false
+    explanation: Combined ratio avser bara försäkringsrörelsen, skador plus driftkostnader i relation till premie.
+  - type: truefalse
+    statement: Under Solvens II diskonteras bästa skattningen med riskfri ränta.
+    answer: true
+  - type: mcq
+    question: Combined ratio är 97 %. Vad innebär det?
+    options:
+      - Bolaget förlorar 3 öre per premiekrona på försäkringsrörelsen
+      - Bolaget tjänar 3 öre per premiekrona på försäkringsrörelsen
+      - Skadeprocenten är 97 %
+      - Driftkostnaderna är 3 % av premien
+    correct: 1
+  - type: qa
+    question: Varför görs en nyckelkontroll mellan reserver i bokföringen och reserver i det aktuariella systemet?
+    answer: För att säkerställa att de reserver som bokförs är desamma som aktuariefunktionen beräknat, så att inga avvikelser uppstår i överföringen mellan system eller vid manuella justeringar.

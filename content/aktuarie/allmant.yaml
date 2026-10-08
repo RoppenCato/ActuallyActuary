@@ -1,0 +1,45 @@
+name: Allmän aktuariekunskap
+description: Solvens II, lagstiftning och begrepp som alla aktuarier bör kunna
+items:
+  - type: term
+    term: Solvens II
+    definition: EU:s regelverk för försäkringsbolag, i kraft sedan 2016. Tre pelare, kvantitativa krav, styrning och tillsyn samt rapportering och offentliggörande.
+  - type: term
+    term: SCR
+    definition: Solvency Capital Requirement. Det kapital ett bolag ska hålla för att med 99,5 % sannolikhet klara ett år. Value at Risk på ettårshorisont.
+  - type: term
+    term: MCR
+    definition: Minimum Capital Requirement. Lägsta tillåtna kapitalnivå. Underskrids den kan tillståndet återkallas.
+  - type: term
+    term: Aktuariefunktionen
+    definition: En av de fyra centrala funktionerna under Solvens II. Ansvarar bl.a. för att samordna beräkningen av tekniska avsättningar och yttra sig om teckningspolicy och återförsäkring.
+  - type: term
+    term: ORSA
+    definition: Own Risk and Solvency Assessment. Bolagets egen bedömning av risk och solvensbehov, framåtblickande över affärsplaneringsperioden.
+  - type: term
+    term: Tekniska avsättningar
+    definition: Bästa skattning plus riskmarginal. Värdet av försäkringsåtagandena på Solvens II-balansräkningen.
+  - type: term
+    term: Stora talens lag
+    definition: Ju fler oberoende risker som poolas, desto närmare det förväntade värdet hamnar det genomsnittliga utfallet. Grundprincipen för försäkring.
+  - type: truefalse
+    statement: SCR motsvarar Value at Risk på 99,5 % över ett år.
+    answer: true
+  - type: truefalse
+    statement: Aktuariefunktionen är en av de fyra centrala funktionerna under Solvens II.
+    answer: true
+    explanation: De fyra är riskhantering, regelefterlevnad, internrevision och aktuariefunktionen.
+  - type: mcq
+    question: Vilken av dessa är INTE en pelare i Solvens II?
+    options:
+      - Kvantitativa krav
+      - Styrning och tillsyn
+      - Rapportering och offentliggörande
+      - Konsumentskydd
+    correct: 3
+  - type: order
+    prompt: Ordna de tre pelarna i Solvens II i rätt ordning
+    steps:
+      - Pelare 1, kvantitativa krav
+      - Pelare 2, styrning, riskhantering och tillsyn
+      - Pelare 3, rapportering och offentliggörande
