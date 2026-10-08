@@ -5,6 +5,7 @@ import { useProgress, levelFromXp } from '../store/progress'
 import { countDue, countNew, useActiveItems } from '../lib/session'
 import { mastery } from '../lib/srs'
 import { ProgressRing } from '../components/ProgressRing'
+import { ACHIEVEMENTS } from '../lib/achievements'
 
 export function Home() {
   const cards = useProgress((s) => s.cards)
@@ -12,6 +13,8 @@ export function Home() {
   const streak = useProgress((s) => s.streak)
   const stats = useProgress((s) => s.stats)
   const flagged = useProgress((s) => s.flagged)
+  const achievements = useProgress((s) => s.achievements)
+  const highscores = useProgress((s) => s.highscores)
   const flaggedIds = new Set(Object.keys(flagged))
   const { level } = levelFromXp(xp)
   const active = useActiveItems(allItems)
@@ -39,6 +42,30 @@ export function Home() {
         <Link to="/play/all" className="btn-primary mt-4 w-full">
           {dueAll > 0 ? `Daglig träning · ${dueAll} att repetera` : 'Daglig träning'}
         </Link>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <Link to="/blitz/all" className="btn-ghost text-sm">⚡ Blixtrond{highscores.all ? ` · ${highscores.all}` : ''}</Link>
+          <Link to="/match/all" className="btn-ghost text-sm">🧩 Matcha par</Link>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-2 px-1 text-sm font-semibold uppercase tracking-wider text-slate-400">
+          Achievements · {Object.keys(achievements).length}/{ACHIEVEMENTS.length}
+        </h2>
+        <div className="glass grid grid-cols-6 gap-2 p-3">
+          {ACHIEVEMENTS.map((a) => {
+            const got = !!achievements[a.id]
+            return (
+              <div
+                key={a.id}
+                title={`${a.title}: ${a.description}`}
+                className={`grid aspect-square place-items-center rounded-xl text-2xl transition ${got ? 'bg-amber-400/15 shadow-inner shadow-amber-400/20' : 'bg-white/5 opacity-30 grayscale'}`}
+              >
+                {a.icon}
+              </div>
+            )
+          })}
+        </div>
       </section>
 
       <h2 className="px-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Kategorier</h2>

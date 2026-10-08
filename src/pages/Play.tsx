@@ -9,6 +9,9 @@ import { buildQueue, useActiveItems } from '../lib/session'
 import type { Grade } from '../lib/srs'
 import { sfx } from '../lib/sound'
 import { Exercise } from '../components/exercises'
+import { QuizCard } from '../components/QuizCard'
+import { LevelUp } from '../components/LevelUp'
+import { termQuiz, type Quiz } from '../lib/generate'
 
 type Result = { id: string; grade: Grade }
 
@@ -23,6 +26,7 @@ export function PlayPage() {
   const xp = useProgress((s) => s.xp)
   const flagged = useProgress((s) => s.flagged)
   const toggleFlag = useProgress((s) => s.toggleFlag)
+  const recordCombo = useProgress((s) => s.recordCombo)
 
   const rawScope: Item[] | null = useMemo(() => {
     if (catId === 'all') return allItems
@@ -45,10 +49,21 @@ export function PlayPage() {
   const startLevel = useRef(levelFromXp(xp).level)
   const requeued = useRef(new Set<string>())
   const celebrated = useRef(false)
+  const [levelUp, setLevelUp] = useState<number | null>(null)
+  const lastPick = useRef(false)
 
   // Derived synchronously so the render never sees an undefined current card.
   const done = queue.length > 0 && idx >= queue.length
   const current = queue[Math.min(idx, queue.length - 1)]
+
+  // Terms the user has already seen are sometimes asked the other way round:
+  // definition shown, pick the term. New terms are always shown as flashcards first.
+  const variant: Quiz | null = useMemo(() => {
+    if (!current || current.type !== 'term') return null
+    const seen = cards[current.id]?.seen ?? 0
+    if (seen === 0 || Math.random() < 0.5) return null
+    return termQuiz(current, scope)
+  }, [current?.id, idx]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (done && !celebrated.current) {
@@ -89,8 +104,9 @@ export function PlayPage() {
       setQueue([...queue, current])
     }
 
+    recordCombo(newCombo)
     const lvl = levelFromXp(xp + xpGained).level
-    if (lvl > startLevel.current) { startLevel.current = lvl; if (sound) sfx.levelUp() }
+    if (lvl > startLevel.current) { startLevel.current = lvl; setLevelUp(lvl); if (sound) sfx.levelUp() }
 
     setIdx(idx + 1)
   }
@@ -112,7 +128,7 @@ export function PlayPage() {
     const gained = xp - startXp.current
     const { level } = levelFromXp(xp)
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-1 flex-col items-center justify-center gap-5 text-center">
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-1 flex-col items-center justify-center gap-5 text-center sm:my-auto sm:flex-none sm:py-10">
         <div className="text-6xl">{correct === results.length ? '🏆' : correct / results.length >= 0.7 ? '🌟' : '💪'}</div>
         <h1 className="text-2xl font-bold">Pass klart!</h1>
         <div className="glass grid w-full grid-cols-3 gap-2 p-4">
@@ -130,7 +146,7 @@ export function PlayPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-3 pt-3">
+    <div className="flex flex-1 flex-col gap-3 pt-3 sm:my-auto sm:flex-none sm:py-6">
       <div className="flex items-center gap-3">
         <Link to={catId === 'all' ? '/' : `/c/${catId}`} className="rounded-lg p-1 text-slate-400 hover:text-white" aria-label="Avsluta">✕</Link>
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
@@ -189,9 +205,14 @@ export function PlayPage() {
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.2 }}
           >
-            <Exercise item={current} onDone={onDone} />
+            {variant ? (
+              <QuizCard quiz={variant} onPick={(c) => { lastPick.current = c }} onNext={() => onDone(lastPick.current ? 2 : 0)} />
+            ) : (
+              <Exercise item={current} onDone={onDone} />
+            )}
           </motion.div>
         </AnimatePresence>
+        <LevelUp level={levelUp} onClose={() => setLevelUp(null)} />
         <AnimatePresence>
           {floats.map((f) => (
             <motion.div

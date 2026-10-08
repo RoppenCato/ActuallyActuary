@@ -38,6 +38,10 @@ export function CategoryPage() {
       <Link to={`/play/${cat.id}`} className="btn-primary">
         {due > 0 ? `Träna hela kategorin · ${due} att repetera` : 'Träna hela kategorin'}
       </Link>
+      <div className="grid grid-cols-2 gap-2">
+        <Link to={`/blitz/${cat.id}`} className="btn-ghost">⚡ Blixtrond</Link>
+        <Link to={`/match/${cat.id}`} className="btn-ghost">🧩 Matcha par</Link>
+      </div>
 
       <div className="flex flex-col gap-3">
         {subs.map((s, idx) => {
@@ -48,7 +52,8 @@ export function CategoryPage() {
           const total = s.items.length || 1
           return (
             <motion.div key={s.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }}>
-              <Link to={`/play/${cat.id}/${s.id}`} className="glass block p-4 transition hover:bg-white/10 active:scale-[0.98]">
+              <div className="glass p-4">
+              <Link to={`/play/${cat.id}/${s.id}`} className="block transition active:scale-[0.98]">
                 <div className="flex items-center gap-3">
                   <div className="min-w-0 flex-1">
                     <div className="font-semibold">{s.name}</div>
@@ -76,6 +81,12 @@ export function CategoryPage() {
                   {counts.mastered > 0 && <span className="text-emerald-300">{counts.mastered} bemästrade</span>}
                 </div>
               </Link>
+              <div className="mt-3 flex gap-2 text-xs">
+                <Link to={`/play/${cat.id}/${s.id}`} className="btn-primary flex-1 py-2 text-xs">Träna</Link>
+                <Link to={`/blitz/${cat.id}/${s.id}`} className="btn-ghost flex-1 py-2 text-xs">⚡ Blixt</Link>
+                <Link to={`/match/${cat.id}/${s.id}`} className="btn-ghost flex-1 py-2 text-xs">🧩 Matcha</Link>
+              </div>
+              </div>
             </motion.div>
           )
         })}

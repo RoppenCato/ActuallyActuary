@@ -1,16 +1,18 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useProgress, levelFromXp } from '../store/progress'
+import { AchievementWatcher } from './AchievementToast'
 
 export function Layout() {
   const xp = useProgress((s) => s.xp)
   const streak = useProgress((s) => s.streak)
   const { level, into, needed } = levelFromXp(xp)
   const loc = useLocation()
-  const inSession = loc.pathname.startsWith('/play')
+  const inSession = /^\/(play|blitz|match)/.test(loc.pathname)
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col safe-top">
+    <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col safe-top sm:max-w-2xl">
+      <AchievementWatcher />
       {!inSession && (
         <header className="sticky top-0 z-20 px-4 pt-3 pb-2 backdrop-blur-md">
           <div className="glass flex items-center gap-3 px-3 py-2">

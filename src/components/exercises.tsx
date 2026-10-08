@@ -62,7 +62,7 @@ export function Flashcard({ item, onDone }: ExerciseProps) {
     <div className="flex flex-1 flex-col gap-4">
       <div className="perspective flex flex-1 flex-col" onClick={() => { if (!flipped) { s.flip(); setFlipped(true) } }}>
         <motion.div
-          className="preserve-3d relative min-h-[280px] w-full flex-1 cursor-pointer"
+          className="preserve-3d relative min-h-[280px] w-full flex-1 cursor-pointer sm:min-h-[400px]"
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.5, type: 'spring', stiffness: 120, damping: 16 }}
         >
@@ -116,7 +116,7 @@ export function TrueFalse({ item, onDone }: ExerciseProps & { item: TrueFalseIte
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div className={`glass flex flex-1 items-center justify-center p-6 ${picked !== null && !correct ? 'shake' : ''}`}>
+      <div className={`glass flex flex-1 items-center justify-center p-6 sm:min-h-[260px] ${picked !== null && !correct ? 'shake' : ''}`}>
         <Front hint="Sant eller falskt?">{item.statement}</Front>
       </div>
       {picked === null ? (
@@ -149,7 +149,7 @@ export function MultipleChoice({ item, onDone }: ExerciseProps & { item: MCQItem
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div className="glass flex items-center justify-center p-6">
+      <div className="glass flex items-center justify-center p-6 sm:min-h-[200px]">
         <Front hint="Välj rätt">{item.question}</Front>
       </div>
       <div className="flex flex-col gap-2">
