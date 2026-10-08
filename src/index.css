@@ -60,3 +60,10 @@ body {
   40%, 60% { transform: translateX(6px); }
 }
 .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+
+/* Page enter transition as pure CSS so it always completes, even if JS animation frames stall. */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.page-enter { animation: page-enter 0.2s ease-out both; }

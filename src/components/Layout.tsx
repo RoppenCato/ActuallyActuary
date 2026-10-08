@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useProgress, levelFromXp } from '../store/progress'
 import { AchievementWatcher } from './AchievementToast'
 
@@ -43,18 +43,9 @@ export function Layout() {
         </header>
       )}
       <main className="flex flex-1 flex-col px-4 pb-6 safe-bottom">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={loc.pathname}
-            className="flex flex-1 flex-col"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18 }}
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
+        <div key={loc.pathname} className="page-enter flex flex-1 flex-col">
+          <Outlet />
+        </div>
       </main>
     </div>
   )
