@@ -1,58 +1,391 @@
 name: Reservsättning
-description: Skadereserver, IBNR, utvecklingstrianglar och metoder
+description: Grundbegrepp, samband, trianglar, Chain Ladder och andra metoder
 items:
   - type: term
-    term: IBNR
-    definition: Incurred But Not Reported. Reserv för skador som har inträffat men ännu inte anmälts till bolaget.
-  - type: term
-    term: IBNER
-    definition: Incurred But Not Enough Reported. Reserv för förväntad framtida utveckling på redan anmälda skador, utöver den individuella reserven.
+    term: Paid (utbetalt)
+    definition: Ackumulerade skadeutbetalningar till och med ett visst datum.
+    tags:
+      - Grundbegrepp
   - type: term
     term: RBNS
-    definition: Reported But Not Settled. Reserv för anmälda men ännu inte slutreglerade skador, ofta satt individuellt av skadereglerare.
+    definition: Reported But Not Settled. Reserv för skador som är anmälda men inte slutreglerade. Kallas även känd skadereserv, case reserve eller Outstanding.
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Chain ladder
-    definition: Reservsättningsmetod där historiska utvecklingsfaktorer från en triangel används för att projicera kumulerade skadekostnader till slutkostnad.
+    term: Outstanding (Outs)
+    definition: Kvarstående reserv på kända skador. I praktiken samma sak som RBNS.
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Bornhuetter-Ferguson
-    definition: Metod som kombinerar en a priori-förväntad slutkostnad (t.ex. premie × förväntad skadeprocent) med faktisk utveckling, viktat med andelen som väntas vara utvecklad.
+    term: Incurred
+    definition: "Paid + Outstanding. Det som hittills är känt om skadekostnaden: utbetalt plus reserv på anmälda skador."
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Utvecklingsfaktor
-    definition: Kvoten mellan kumulerad skadekostnad i en utvecklingsperiod och den föregående, för ett givet skadeår. Används i chain ladder.
+    term: IBNR
+    definition: Incurred But Not Reported. Reserv för skador som har inträffat men ännu inte anmälts. I praktiken ingår oftast även IBNER.
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Tail factor
-    definition: Faktor som fångar utveckling bortom sista observerade utvecklingsperioden i triangeln, så att reserven täcker hela run-off-perioden.
+    term: IBNYR
+    definition: 'Incurred But Not Yet Reported. "Ren" IBNR: skador som inträffat men inte anmälts alls.'
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Run-off
-    definition: Hur tidigare års reserver utvecklas mot faktiska utbetalningar. Positiv run-off betyder att reserven var större än vad som behövdes.
+    term: IBNER
+    definition: Incurred But Not Enough Reserved. Förväntad framtida utveckling på redan anmälda skador, dvs. att RBNS är för låg eller för hög.
+    tags:
+      - Grundbegrepp
   - type: term
-    term: Skadeår
-    definition: Det år skadan inträffade (accident year). Grund för radindelning i en utvecklingstriangel.
-  - type: truefalse
-    statement: IBNR-reserven avser skador som är anmälda men inte färdigreglerade.
-    answer: false
-    explanation: Det är RBNS. IBNR avser skador som inträffat men ännu inte anmälts.
-  - type: truefalse
-    statement: Bornhuetter-Ferguson är mindre känslig än chain ladder för enstaka avvikande värden i de senaste skadeåren.
-    answer: true
-    explanation: BF väger in en a priori-förväntan, vilket stabiliserar skattningen när faktisk utveckling är tunn.
-  - type: mcq
-    question: Vilken metod lämpar sig bäst för ett ungt skadeår med mycket lite faktisk utveckling?
-    options:
-      - Chain ladder
-      - Bornhuetter-Ferguson
-      - Ren utbetalningsstatistik
-      - Individuell reservsättning per skada
-    correct: 1
-    explanation: Med lite data ger chain ladder instabila skattningar. BF lutar sig mot en a priori-förväntan.
+    term: Ultimo (Ultimate)
+    definition: Den slutliga förväntade skadekostnaden för ett skadeår när alla skador är färdigreglerade. Ultimo = Paid + RBNS + IBNR.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Skadereserv (claims reserve)
+    definition: Det som återstår att betala för inträffade skador. Reserv = Ultimo − Paid = RBNS + IBNR.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: ULAE
+    definition: Unallocated Loss Adjustment Expenses. Reserv för framtida skaderegleringskostnader som inte kan knytas till en enskild skada (t.ex. löner för skadereglerare).
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: ALAE
+    definition: Allocated Loss Adjustment Expenses. Skaderegleringskostnader som kan knytas direkt till en enskild skada.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Skadeår (accident year)
+    definition: Perioden då skadan inträffade. Reserverna följs upp per skadeår, inte per anmälnings- eller bokföringsår.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Utvecklingsperiod (development period)
+    definition: Tiden som gått sedan skadeperioden, t.ex. utvecklingsmånad 1, 2, 3 osv.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Bokföringsperiod (booking period)
+    definition: Perioden då en utbetalning eller reservändring bokas. Motsvarar diagonalen i en triangel.
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Short-tail / long-tail
+    definition: Short-tail = skador som anmäls och regleras snabbt (t.ex. veterinärvård). Long-tail = skador som tar lång tid att reglera (t.ex. ansvar).
+    tags:
+      - Grundbegrepp
   - type: qa
-    question: Vad betyder en negativ run-off för ett skadeår?
-    answer: Att reserven som sattes vid tidigare bokslut var för liten. Faktisk slutkostnad blev högre än reserverat, vilket belastar årets resultat.
+    question: Hur hänger Paid, RBNS, IBNR och Ultimo ihop?
+    answer: Ultimo = Paid + RBNS + IBNR. Paid + RBNS = Incurred, så Ultimo = Incurred + IBNR.
+    tags:
+      - Grundbegrepp
+  - type: qa
+    question: Vad är skillnaden mellan RBNS och IBNR?
+    answer: RBNS gäller skador som är anmälda men inte färdigreglerade. IBNR gäller skador som har inträffat men inte anmälts ännu.
+    tags:
+      - Grundbegrepp
+  - type: qa
+    question: Om Ultimo är 100, Paid 70 och RBNS 20, vad är IBNR?
+    answer: 10. IBNR = Ultimo − Paid − RBNS.
+    tags:
+      - Grundbegrepp
+  - type: truefalse
+    statement: IBNR avser anmälda men oreglerade skador.
+    answer: false
+    explanation: Det är RBNS.
+    tags:
+      - Grundbegrepp
+  - type: truefalse
+    statement: Incurred innehåller IBNR.
+    answer: false
+    explanation: Incurred = Paid + Outstanding. IBNR läggs till för att nå Ultimo.
+    tags:
+      - Grundbegrepp
+  - type: truefalse
+    statement: IBNR kan vara negativ.
+    answer: true
+    explanation: Om kända reserver bedöms vara för höga (negativ IBNER) kan total IBNR bli negativ.
+    tags:
+      - Grundbegrepp
+  - type: mcq
+    question: Vilken post ökar när en skada anmäls och får en handläggarreserv?
+    options:
+      - Paid
+      - RBNS
+      - IBNR
+      - ULAE
+    correct: 1
+    tags:
+      - Grundbegrepp
+  - type: mcq
+    question: Vad är Ultimo minus Paid?
+    options:
+      - Incurred
+      - IBNR
+      - Skadereserv
+      - RBNS
+    correct: 2
+    tags:
+      - Grundbegrepp
+  - type: term
+    term: Ultimo (formel)
+    definition: Ultimo = Paid + RBNS + IBNR
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Incurred (formel)
+    definition: Incurred = Paid + RBNS
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: IBNR (formel)
+    definition: IBNR = Ultimo − Incurred
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Skadereserv (formel)
+    definition: Skadereserv = Ultimo − Paid = RBNS + IBNR
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Skadekostnad i perioden
+    definition: Utbetalt under perioden + förändring i skadereserven under perioden.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Skadeprocent per skadeår (formel)
+    definition: Ultimo / intjänad premie för samma skadeår.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Run-off (formel)
+    definition: Ultimo vid förra bokslutet − Ultimo nu, för tidigare skadeår. Positivt = avvecklingsvinst.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Intjänad premie (formel)
+    definition: Tecknad premie − förändring i ej intjänad premie under perioden.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: En anmäld skada betalas ut med exakt det reserverade beloppet. Vad händer med Paid, RBNS, Incurred och Ultimo?
+    answer: Paid upp, RBNS ner lika mycket. Incurred och Ultimo oförändrade.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: En skada som redan var förväntad i IBNR anmäls. Vad händer med RBNS, IBNR och Ultimo?
+    answer: RBNS upp, IBNR ner. Ultimo oförändrat, så länge beloppet är som väntat.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: En skada betalas ut med mer än vad som var reserverat. Vad händer?
+    answer: Incurred ökar med mellanskillnaden. Om IBNR inte hade höjd för det ökar även Ultimo.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Ultimo för ett gammalt skadeår höjs medan Paid och RBNS är oförändrade. Vad ändras?
+    answer: IBNR ökar, skadereserven ökar, skadeprocenten för skadeåret stiger och årets resultat belastas med en avvecklingsförlust.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Varför försämras resultatet när reserven höjs?
+    answer: Skadekostnad = utbetalt + reservförändring. En höjd reserv är en kostnad nu, även om inga pengar har betalats ut.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Paid ökar kraftigt en månad men Ultimo ligger still. Vad betyder det?
+    answer: Utbetalningarna var väntade. Reserven minskar lika mycket som Paid ökar, så skadekostnaden påverkas inte.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Intjänad premie ökar men Ultimo är oförändrat. Vad händer med skadeprocenten?
+    answer: Den sjunker, eftersom nämnaren växer.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Varför kan bokföringsårets skadeprocent skilja sig från skadeårets?
+    answer: Bokföringsåret innehåller även run-off från gamla skadeår. En avvecklingsvinst sänker den, en avvecklingsförlust höjer den.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: truefalse
+    statement: En utbetalning ökar alltid skadekostnaden.
+    answer: false
+    explanation: Om skadan var fullt reserverad minskar reserven lika mycket och skadekostnaden är oförändrad.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: truefalse
+    statement: Om RBNS ökar måste Ultimo öka.
+    answer: false
+    explanation: Om ökningen var väntad minskar IBNR i motsvarande grad.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: truefalse
+    statement: Ultimo = Paid + RBNS.
+    answer: false
+    explanation: Det är Incurred. Ultimo innehåller även IBNR.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: mcq
+    question: Vilken post är oförändrad när en fullt reserverad skada betalas ut?
+    options:
+      - Paid
+      - RBNS
+      - Incurred
+      - Skadereserv
+    correct: 2
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: mcq
+    question: Ultimo sänks för ett tidigare skadeår. Vad kallas effekten?
+    options:
+      - Avvecklingsvinst
+      - Avvecklingsförlust
+      - IBNER
+      - Tail factor
+    correct: 0
+    tags:
+      - Samband – hur allt hänger ihop
   - type: order
-    prompt: Ordna stegen i en enkel chain ladder-beräkning
+    prompt: En skadas livscykel
     steps:
-      - Bygg en kumulerad utvecklingstriangel per skadeår
-      - Beräkna utvecklingsfaktorer mellan utvecklingsperioder
-      - Välj faktorer (t.ex. volymvägt medel) och eventuell tail factor
-      - Projicera varje skadeår till slutkostnad
-      - Reserv = projicerad slutkostnad minus hittills utbetalt
+      - Skadan inträffar (ingår i IBNR)
+      - Skadan anmäls (flyttas till RBNS)
+      - Delutbetalningar (RBNS minskar, Paid ökar)
+      - Skadan slutregleras (allt ligger i Paid)
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Utvecklingstriangel
+    definition: Tabell med skadeperioder som rader och utvecklingsperioder som kolumner. Visar hur Paid eller Incurred vuxit över tid. Diagonalen är samma bokföringsperiod.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: Chain Ladder
+    definition: Reservmetod som antar att framtida skadeutveckling följer det historiska mönstret. Ultimo = senaste kända värde × kvarvarande utvecklingsfaktorer.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: Utvecklingsfaktor (link ratio, age-to-age)
+    definition: "Kvoten mellan ackumulerat värde i utvecklingsperiod j+1 och j. Volymvägd: summan av kolumn j+1 delat med summan av kolumn j för de skadeår som har båda."
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: CDF (kumulativ utvecklingsfaktor)
+    definition: Produkten av alla kvarvarande utvecklingsfaktorer från nuvarande utvecklingsperiod till ultimo. Även kallad age-to-ultimate.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: Tail factor (svansfaktor)
+    definition: Extra faktor för utveckling efter triangelns sista kolumn, när skadorna inte är fullt utvecklade där triangeln slutar.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: Betalningsmönster (payment pattern)
+    definition: Andel av ultimo som förväntas vara utbetald vid varje utvecklingsperiod. Andel utbetald = 1 / CDF.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: qa
+    question: Vilket grundantagande gör Chain Ladder?
+    answer: Att utvecklingsmönstret är stabilt, dvs. att senare skadeår utvecklas på samma sätt som äldre gjort.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: qa
+    question: Senaste Incurred är 80 och CDF är 1,25. Vad blir ultimo och IBNR enligt Chain Ladder?
+    answer: Ultimo = 80 × 1,25 = 100. IBNR = 100 − 80 = 20.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: qa
+    question: Varför är Chain Ladder osäker för de senaste skadeperioderna?
+    answer: Datat är litet och CDF stor, så små slumpvariationer i tidig utveckling förstoras kraftigt i ultimo.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: qa
+    question: När fungerar Chain Ladder dåligt?
+    answer: När mönstret ändrats, t.ex. vid ändrad skadehantering, eftersläpning (backlog), nya produkter, ändrade villkor eller stora enskilda skador.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: truefalse
+    statement: Diagonalen i en triangel motsvarar ett skadeår.
+    answer: false
+    explanation: Raden är skadeåret. Diagonalen är en bokföringsperiod.
+    tags:
+      - Trianglar och Chain Ladder
+  - type: truefalse
+    statement: En CDF på 1,00 betyder att skadeåret bedöms fullt utvecklat.
+    answer: true
+    tags:
+      - Trianglar och Chain Ladder
+  - type: mcq
+    question: Vad händer med ultimo i Chain Ladder om senaste diagonalen blir högre än förväntat?
+    options:
+      - Ultimo sjunker
+      - Ultimo ökar proportionellt
+      - Ultimo är oförändrat
+      - Bara IBNR sjunker
+    correct: 1
+    tags:
+      - Trianglar och Chain Ladder
+  - type: order
+    prompt: Stegen i Chain Ladder
+    steps:
+      - Bygg ackumulerad triangel (Paid eller Incurred)
+      - Beräkna utvecklingsfaktorer mellan kolumnerna
+      - Välj faktorer och eventuell tail factor
+      - Multiplicera ihop till kumulativa faktorer (CDF)
+      - Ultimo = senaste diagonalen × CDF
+      - Reserv = Ultimo − Paid
+    tags:
+      - Trianglar och Chain Ladder
+  - type: term
+    term: Bornhuetter-Ferguson (BF)
+    definition: Metod som blandar faktisk utveckling med en förhandsbedömning. Ultimo = hittills känt + a priori-ultimo × andel som återstår att utvecklas (1 − 1/CDF).
+    tags:
+      - Andra metoder
+  - type: term
+    term: A priori (förväntad skadeprocent)
+    definition: Förhandsantagande om skadekostnaden, oftast förväntad skadeprocent × intjänad premie. Används i BF och Expected Loss Ratio-metoden.
+    tags:
+      - Andra metoder
+  - type: term
+    term: AvE (Actual vs Expected)
+    definition: Jämförelse mellan faktisk skadeutveckling under en period och den utveckling modellen förväntade. Används för att följa upp och justera ultimo.
+    tags:
+      - Andra metoder
+  - type: term
+    term: Big claims (storskador)
+    definition: Skador över en beloppsgräns som lyfts ur trianglarna och hanteras separat, så att de inte snedvrider utvecklingsfaktorerna.
+    tags:
+      - Andra metoder
+  - type: term
+    term: Backlog (eftersläpning)
+    definition: Anmälda skador som väntar på handläggning. Ökad backlog gör att Paid och Incurred ser för låga ut jämfört med det historiska mönstret.
+    tags:
+      - Andra metoder
+  - type: qa
+    question: Varför används Bornhuetter-Ferguson för unga skadeår?
+    answer: Tidig data är liten och volatil. BF låter a priori-antagandet styra den del som inte utvecklats ännu, så ultimo blir stabilare än med Chain Ladder.
+    tags:
+      - Andra metoder
+  - type: qa
+    question: Hur ändras vikten mellan data och a priori i BF när skadeåret blir äldre?
+    answer: Andelen som återstår att utvecklas minskar, så faktisk data får allt större vikt och BF närmar sig Chain Ladder.
+    tags:
+      - Andra metoder
+  - type: truefalse
+    statement: I BF påverkas den outvecklade delen av ultimo av hur skadorna hittills har utvecklats.
+    answer: false
+    explanation: Den outvecklade delen bygger på a priori-antagandet, inte på utfallet hittills.
+    tags:
+      - Andra metoder
+  - type: mcq
+    question: Vilken metod reagerar starkast på en ovanligt hög första utvecklingsmånad?
+    options:
+      - Chain Ladder
+      - Bornhuetter-Ferguson
+      - Expected Loss Ratio
+      - Alla lika
+    correct: 0
+    tags:
+      - Andra metoder

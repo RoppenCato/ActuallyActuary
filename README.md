@@ -57,6 +57,32 @@ items:
 
 Alla typer kan ha `explanation` och `tags`. Kör `npm run validate` för att kontrollera filerna.
 
+### Snabbformat (text)
+
+Skriv eller låt Claude skriva material i det här textformatet, så konverterar
+`node scripts/md-to-yaml.mjs fil.md` det till YAML. `## Rubriker` blir taggar.
+
+```
+## Reservsättning
+
+Begrepp: IBNR
+Betyder: Incurred But Not Reported ...
+
+Fråga: Varför används Bornhuetter-Ferguson för unga skadeår?
+Svar: ...
+
+Sant/falskt: IBNR avser anmälda men oreglerade skador.
+Svar: Falskt. Det är RBNS.
+
+Flerval: Vilken fördelning används för skadefrekvens?
+Alternativ: Normal / Gamma / Poisson / Lognormal
+Rätt: Poisson
+
+Ordning: Stegen i chain ladder
+1. Bygg triangel
+2. Beräkna utvecklingsfaktorer
+```
+
 ## Utveckling
 
 ```bash

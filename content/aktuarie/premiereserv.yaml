@@ -1,0 +1,390 @@
+name: Premiereserv (Solvens II)
+description: BE^PP, balansposter, antaganden, formler, kassaflöde och rörelseanalys
+items:
+  - type: term
+    term: Premiereserv / premieavsättning (BE^PP)
+    definition: Best Estimate för framtida skador och kostnader på befintliga avtal, minus framtida premieinflöden. Nuvärdesberäknad.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: Skadeavsättning (BE^CP)
+    definition: Best Estimate för skador som redan har inträffat. Premieavsättningen gäller i stället skador som ännu inte inträffat.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: Kontraktsgräns (contract boundary)
+    definition: Gränsen för vilka framtida premier och åtaganden som räknas till ett befintligt avtal och därmed ingår i premiereserven.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: Riskmarginal (RM)
+    definition: Tillägg till Best Estimate för kostnaden att hålla kapital tills åtagandena är avvecklade.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: TP (Technical Provisions)
+    definition: Försäkringstekniska avsättningar. TP = BE^PP + BE^CP + RM.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: B-klass
+    definition: Den produktnivå premiereserven beräknas på. Summeras sedan till R-klass och totalt.
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: SakBE
+    definition: Agrias kvartalsvisa Solvens II-leverans av Best Estimate till aktuariefunktionen.
+    tags:
+      - Vad premiereserven är
+  - type: qa
+    question: Vad är skillnaden mellan premiereserven i Solvens II och UPR i redovisningen?
+    answer: "UPR är den ej intjänade delen av premien. S2-premiereserven är ett diskonterat kassaflöde: förväntade skador och kostnader minus framtida premieinflöden."
+    tags:
+      - Vad premiereserven är
+  - type: qa
+    question: Hur kan premiereserven bli negativ?
+    answer: När affären är lönsam är förväntade skador och kostnader lägre än premien, och premiefordringar dras av fullt ut.
+    tags:
+      - Vad premiereserven är
+  - type: qa
+    question: I vilken valuta diskonteras premiereserven och med vilken kurva?
+    answer: I SEK oavsett ursprungsvaluta, med EIOPA:s riskfria räntekurva.
+    tags:
+      - Vad premiereserven är
+  - type: truefalse
+    statement: Premiereserven täcker skador som redan har inträffat.
+    answer: false
+    explanation: Det gör skadeavsättningen.
+    tags:
+      - Vad premiereserven är
+  - type: truefalse
+    statement: En negativ premiereserv är alltid ett fel.
+    answer: false
+    explanation: Lönsam affär kan ge negativ premiereserv.
+    tags:
+      - Vad premiereserven är
+  - type: mcq
+    question: Vilken formel stämmer?
+    options:
+      - TP = BE^PP + BE^CP + RM
+      - TP = UPR + HHP
+      - TP = BE^CP − BE^PP
+      - TP = BE^PP + RM − BE^CP
+    correct: 0
+    tags:
+      - Vad premiereserven är
+  - type: term
+    term: UPR
+    definition: Unearned Premium Reserve, ej intjänad premie. Den del av premien som avser försäkringstid efter balansdagen.
+    tags:
+      - Balansposter
+  - type: term
+    term: HHP
+    definition: Framtida premie på befintliga avtal inom kontraktsgränsen, dvs. premie som ännu inte är aviserad men hör till avtal vi redan är bundna av.
+    tags:
+      - Balansposter
+  - type: term
+    term: FEA / FEE
+    definition: Premiefordringar. Dras av rakt av i premiereserven.
+    tags:
+      - Balansposter
+  - type: term
+    term: HHPR
+    definition: Återförsäkringspremie på tecknad återförsäkring. Ingår i formeln men är noll i dagens beräkning.
+    tags:
+      - Balansposter
+  - type: term
+    term: Volymmått (VM)
+    definition: "Exponeringen efter annullation: VM = (1 − AN_existing) × UPR + (1 − AN_future) × HHP."
+    tags:
+      - Balansposter
+  - type: qa
+    question: Vad är skillnaden mellan UPR och HHP?
+    answer: UPR är redan aviserad premie för tid som inte passerat. HHP är premie som ännu inte aviserats men som ligger inom kontraktsgränsen.
+    tags:
+      - Balansposter
+  - type: truefalse
+    statement: Premiefordringarna multipliceras med kostnadskvoten innan de dras av.
+    answer: false
+    explanation: De dras av rakt av.
+    tags:
+      - Balansposter
+  - type: term
+    term: LR (skadeprocent)
+    definition: Antagen framtida skadekostnad som andel av premien.
+    tags:
+      - Antaganden
+  - type: term
+    term: CHR
+    definition: Claims Handling Ratio, skaderegleringskostnad som andel av premien. Inte samma sak som skadereservens ULAE, som gäller redan inträffade skador.
+    tags:
+      - Antaganden
+  - type: term
+    term: ADM
+    definition: Administrationskostnad som andel av premien.
+    tags:
+      - Antaganden
+  - type: term
+    term: PR (provision)
+    definition: Provisionskostnad som andel av premien. Läggs bara på HHP i formeln.
+    tags:
+      - Antaganden
+  - type: term
+    term: CR
+    definition: "Sammanlagd kostnadskvot i formeln: skador plus kostnader (LR + CHR + ADM)."
+    tags:
+      - Antaganden
+  - type: term
+    term: AN_existing / AN_future
+    definition: Annullationsantaganden. AN_existing gäller redan aviserad premie (UPR), AN_future gäller framtida premie (HHP).
+    tags:
+      - Antaganden
+  - type: term
+    term: REC_LR / REC_CHR
+    definition: Återförsäkrarens andel av skadekostnad respektive skaderegleringskostnad.
+    tags:
+      - Antaganden
+  - type: term
+    term: Prem_RIS
+    definition: Framtida återförsäkringspremie som andel av volymmåttet.
+    tags:
+      - Antaganden
+  - type: term
+    term: CDA
+    definition: Counterparty Default Adjustment. Justering av återförsäkringsandelen för risken att motparten inte betalar.
+    tags:
+      - Antaganden
+  - type: qa
+    question: Hur ofta uppdateras antagandena normalt?
+    answer: Bara vid årsskifte. Övriga kvartal räknas med oförändrade antaganden.
+    tags:
+      - Antaganden
+  - type: truefalse
+    statement: CHR i premiereserven är samma sak som ULAE i skadereserven.
+    answer: false
+    explanation: CHR är en kostnadskvot på premie för framtida skador. ULAE är en reserv för reglering av redan inträffade skador.
+    tags:
+      - Antaganden
+  - type: term
+    term: Odiskonterad bruttopremiereserv
+    definition: PP = CR × [(1 − AN_exist) × UPR + (1 − AN_fut) × HHP] + PR × HHP + (AN_exist × UPR + AN_fut × HHP) − (FEA + FEE)
+    tags:
+      - Formler
+  - type: term
+    term: Återförsäkrares andel (PP_RIS)
+    definition: PP_RIS = VM × (LR × REC_LR + CHR × REC_CHR) × (1 − CDA) − (HHPR + VM × Prem_RIS) × (1 − CDA)
+    tags:
+      - Formler
+  - type: term
+    term: Netto
+    definition: Netto = Brutto (Gross) − återförsäkrares andel (RIS).
+    tags:
+      - Formler
+  - type: term
+    term: Diskonterad Best Estimate
+    definition: Summan över framtida månader av belopp × betalningsmönster / (1 + ränta)^tid.
+    tags:
+      - Formler
+  - type: qa
+    question: Vilka fyra delar består bruttoformeln av?
+    answer: 1) Skador och kostnader på kvarvarande volym, 2) provision på HHP, 3) återbetalning vid annullation, 4) avdrag för premiefordringar.
+    tags:
+      - Formler
+  - type: qa
+    question: Varför finns termen AN_exist × UPR + AN_fut × HHP i formeln?
+    answer: Den är återbetalningen vid annullation. Premie som annulleras ger ingen skadekostnad men ska betalas tillbaka.
+    tags:
+      - Formler
+  - type: qa
+    question: UPR = 100, HHP = 0, CR = 80 %, ingen annullation, inga fordringar. Vad blir odiskonterad PP?
+    answer: 80. PP = 0,80 × 100.
+    tags:
+      - Formler
+  - type: qa
+    question: UPR = 100, HHP = 50, CR = 80 %, PR = 0, ingen annullation, FEA + FEE = 140. Vad blir PP?
+    answer: −20. 0,80 × 150 = 120, minus 140 i fordringar.
+    tags:
+      - Formler
+  - type: qa
+    question: UPR = 100, CR = 80 %, AN_exist = 10 %, HHP = 0, inga fordringar. Vad blir PP?
+    answer: 82. Skador och kostnader 0,80 × 90 = 72, plus återbetalning 10.
+    tags:
+      - Formler
+  - type: term
+    term: Skadeflöde
+    definition: Framtida skadeutbetalningar på befintliga avtal. Drivs av LR.
+    tags:
+      - Kassaflödets delar
+  - type: term
+    term: Kostnadsflöde
+    definition: "Framtida driftskostnader: skadereglering (CHR), administration (ADM) och provision (PR)."
+    tags:
+      - Kassaflödets delar
+  - type: term
+    term: Annullationsflöde
+    definition: Återbetalning av premie till kunder som säger upp avtalet i förtid.
+    tags:
+      - Kassaflödets delar
+  - type: term
+    term: Premieinflöde
+    definition: Framtida premier från kunderna. Negativt tecken, eftersom det minskar reserven.
+    tags:
+      - Kassaflödets delar
+  - type: term
+    term: Gross / RIS / Net
+    definition: Brutto, återförsäkrares andel och netto. Kassaflödet redovisas på alla tre.
+    tags:
+      - Kassaflödets delar
+  - type: term
+    term: Betalningsmönster (payment pattern)
+    definition: Fördelning av kassaflödet över framtida månader. Behövs för att kunna diskontera.
+    tags:
+      - Kassaflödets delar
+  - type: qa
+    question: Varför behövs ett betalningsmönster i premiereserven?
+    answer: Formeln ger ett totalbelopp. Mönstret lägger beloppet på rätt framtida månader så att det kan diskonteras.
+    tags:
+      - Kassaflödets delar
+  - type: qa
+    question: Vilket tecken har premieinflödet och varför?
+    answer: Negativt. Det är pengar in, vilket minskar åtagandet.
+    tags:
+      - Kassaflödets delar
+  - type: mcq
+    question: Vilken del av kassaflödet innehåller provisionen?
+    options:
+      - Skadeflödet
+      - Kostnadsflödet
+      - Annullationsflödet
+      - Premieinflödet
+    correct: 1
+    tags:
+      - Kassaflödets delar
+  - type: order
+    prompt: Från balans till Best Estimate
+    steps:
+      - Ta fram balansposter (UPR, HHP, fordringar) per B-klass
+      - Applicera antaganden (LR, CHR, ADM, PR, annullation)
+      - Fördela beloppen över framtida månader med betalningsmönstret
+      - Dela upp på brutto, återförsäkring och netto
+      - Diskontera med EIOPA-kurvan
+      - Summera till R-klass och totalt
+    tags:
+      - Kassaflödets delar
+  - type: qa
+    question: Hur hänger tecknad premie, intjänad premie och UPR ihop?
+    answer: Tecknad premie tjänas in över försäkringstiden. Det som ännu inte tjänats in på balansdagen är UPR.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med UPR mellan två förnyelser?
+    answer: Den sjunker i takt med att premien tjänas in, och hoppar upp igen när avtalen förnyas. Därför har UPR säsongsmönster.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Hur hänger premiereserven och skadereserven ihop över tid?
+    answer: När tiden går tjänas premien in och skador inträffar. Åtagandet flyttar då från premiereserven till skadereserven.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Om det inte finns HHP, fordringar eller annullation, hur förhåller sig premiereserven till UPR?
+    answer: PP = CR × UPR. Är kostnadskvoten under 100 % blir premiereserven lägre än UPR.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med premiereserven om UPR ökar, allt annat lika?
+    answer: Den ökar, eftersom mer exponering ger mer förväntade skador och kostnader.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med premiereserven om LR-antagandet höjs?
+    answer: Den ökar. Högre förväntad skadekostnad på samma volym.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med premiereserven om premiefordringarna ökar, allt annat lika?
+    answer: Den minskar krona för krona, eftersom fordringarna dras av rakt av.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med premiereserven om annullationsantagandet höjs och kostnadskvoten är under 100 %?
+    answer: Den ökar. Annullerad premie betalas tillbaka till 100 %, medan kvarvarande premie bara kostar CR.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med en positiv premiereserv när räntan stiger?
+    answer: Den sjunker, eftersom framtida kassaflöden diskonteras hårdare.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Vad händer med nettoreserven om återförsäkrarens andel ökar?
+    answer: Den minskar. Netto = brutto − återförsäkrares andel.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Varför kan en utlandsklass ändras utan att affären har ändrats?
+    answer: Valutaeffekt. Reserven räknas om till SEK, så en svagare krona gör beloppet större.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: qa
+    question: Antagandena är oförändrade men premiereserven har rört sig. Vad kan ligga bakom?
+    answer: Volymen (UPR, HHP, fordringar), räntekurvan eller valutakurserna.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: truefalse
+    statement: Premiereserven är alltid lägre än UPR.
+    answer: false
+    explanation: HHP, annullation och en kostnadskvot över 100 % kan göra den högre.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: truefalse
+    statement: Antagandeändringar förklarar normalt förändringen mellan Q1 och Q2.
+    answer: false
+    explanation: Antagandena uppdateras normalt bara vid årsskifte.
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: mcq
+    question: Vilken förändring sänker premiereserven?
+    options:
+      - Högre UPR
+      - Högre LR
+      - Högre premiefordringar
+      - Lägre ränta
+    correct: 2
+    tags:
+      - Samband – hur allt hänger ihop
+  - type: term
+    term: Rörelseanalys
+    definition: Förklaring av hur premiereserven förändrats mellan två kvartal, uppdelad på drivare som volym, antaganden, ränta och valuta.
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: TQ / LQ
+    definition: This Quarter och Last Quarter. Kvartalet som rapporteras och kvartalet det jämförs mot.
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: K04
+    definition: Nyckelkontrollen av premiereserven. Jämför TQ mot LQ per B-klass och kräver kommentarer till förändringarna.
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: Volymeffekt
+    definition: Den del av förändringen som beror på ändrade balansposter (UPR, HHP, fordringar).
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: Antagandeeffekt
+    definition: Den del av förändringen som beror på ändrade antaganden (LR, kostnader, annullation).
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: Ränteeffekt
+    definition: Den del av förändringen som beror på en ändrad diskonteringskurva.
+    tags:
+      - Rörelseanalys
+  - type: term
+    term: Valutaeffekt
+    definition: Den del av förändringen som beror på ändrade växelkurser mot SEK.
+    tags:
+      - Rörelseanalys

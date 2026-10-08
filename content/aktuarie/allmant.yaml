@@ -1,34 +1,108 @@
 name: Allmän aktuariekunskap
-description: Solvens II, lagstiftning och begrepp som alla aktuarier bör kunna
+description: Solvens II, kapitalkrav, aktuariefunktionen och grundprinciper
 items:
+  - type: term
+    term: Best Estimate (BE)
+    definition: Sannolikhetsvägt medelvärde av framtida kassaflöden, diskonterat med riskfri ränta. Ska inte innehålla försiktighetsmarginal.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Riskmarginal (RM)
+    definition: Tillägg till Best Estimate som motsvarar kostnaden för att hålla kapital tills åtagandena är avvecklade. Beräknas med cost-of-capital-metoden.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Försäkringstekniska avsättningar (Technical Provisions, TP)
+    definition: TP = Best Estimate + Riskmarginal. Best Estimate delas i skadeavsättning och premieavsättning.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Skadeavsättning (claims provision, CP)
+    definition: Best Estimate för skador som redan har inträffat, oavsett om de är anmälda.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Premieavsättning (premium provision, PP)
+    definition: Best Estimate för framtida skador och kostnader på befintliga avtal, minus framtida premier.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Kontraktsgräns (contract boundary)
+    definition: Gränsen för vilka framtida premier och åtaganden som tillhör ett befintligt avtal och därmed ska ingå i Best Estimate.
+    tags:
+      - Solvens II – grund
+  - type: term
+    term: Diskontering
+    definition: Omräkning av framtida kassaflöden till nuvärde med EIOPA:s riskfria räntekurva.
+    tags:
+      - Solvens II – grund
+  - type: qa
+    question: Vad skiljer Best Estimate från en bokföringsmässig reserv?
+    answer: BE är ett diskonterat kassaflöde utan försiktighetsmarginal. Osäkerheten hanteras separat i riskmarginalen.
+    tags:
+      - Solvens II – grund
+  - type: qa
+    question: Vad händer med Best Estimate när räntan stiger?
+    answer: Den sjunker, eftersom framtida kassaflöden diskonteras hårdare. Effekten är störst för långsvansad affär.
+    tags:
+      - Solvens II – grund
+  - type: truefalse
+    statement: Skadeavsättningen täcker skador som inträffar efter balansdagen.
+    answer: false
+    explanation: Det gör premieavsättningen.
+    tags:
+      - Solvens II – grund
+  - type: mcq
+    question: Vilken formel stämmer?
+    options:
+      - TP = BE − RM
+      - TP = BE + RM
+      - TP = CP + PP
+      - BE = TP + RM
+    correct: 1
+    tags:
+      - Solvens II – grund
   - type: term
     term: Solvens II
     definition: EU:s regelverk för försäkringsbolag, i kraft sedan 2016. Tre pelare, kvantitativa krav, styrning och tillsyn samt rapportering och offentliggörande.
+    tags:
+      - Solvens II och regelverk
   - type: term
     term: SCR
     definition: Solvency Capital Requirement. Det kapital ett bolag ska hålla för att med 99,5 % sannolikhet klara ett år. Value at Risk på ettårshorisont.
+    tags:
+      - Solvens II och regelverk
   - type: term
     term: MCR
     definition: Minimum Capital Requirement. Lägsta tillåtna kapitalnivå. Underskrids den kan tillståndet återkallas.
+    tags:
+      - Solvens II och regelverk
   - type: term
     term: Aktuariefunktionen
     definition: En av de fyra centrala funktionerna under Solvens II. Ansvarar bl.a. för att samordna beräkningen av tekniska avsättningar och yttra sig om teckningspolicy och återförsäkring.
+    tags:
+      - Solvens II och regelverk
   - type: term
     term: ORSA
     definition: Own Risk and Solvency Assessment. Bolagets egen bedömning av risk och solvensbehov, framåtblickande över affärsplaneringsperioden.
-  - type: term
-    term: Tekniska avsättningar
-    definition: Bästa skattning plus riskmarginal. Värdet av försäkringsåtagandena på Solvens II-balansräkningen.
+    tags:
+      - Solvens II och regelverk
   - type: term
     term: Stora talens lag
     definition: Ju fler oberoende risker som poolas, desto närmare det förväntade värdet hamnar det genomsnittliga utfallet. Grundprincipen för försäkring.
+    tags:
+      - Solvens II och regelverk
   - type: truefalse
     statement: SCR motsvarar Value at Risk på 99,5 % över ett år.
     answer: true
+    tags:
+      - Solvens II och regelverk
   - type: truefalse
     statement: Aktuariefunktionen är en av de fyra centrala funktionerna under Solvens II.
     answer: true
     explanation: De fyra är riskhantering, regelefterlevnad, internrevision och aktuariefunktionen.
+    tags:
+      - Solvens II och regelverk
   - type: mcq
     question: Vilken av dessa är INTE en pelare i Solvens II?
     options:
@@ -37,9 +111,13 @@ items:
       - Rapportering och offentliggörande
       - Konsumentskydd
     correct: 3
+    tags:
+      - Solvens II och regelverk
   - type: order
     prompt: Ordna de tre pelarna i Solvens II i rätt ordning
     steps:
       - Pelare 1, kvantitativa krav
       - Pelare 2, styrning, riskhantering och tillsyn
       - Pelare 3, rapportering och offentliggörande
+    tags:
+      - Solvens II och regelverk

@@ -1,31 +1,82 @@
-name: Bokslut
-description: Kvartalsbokslut, nyckelkontroller och rapportering
+name: Bokslut och nyckeltal
+description: Premier, skadeprocent, combined ratio, run-off och nyckelkontroller
 items:
   - type: term
-    term: Combined ratio
-    definition: Skadeprocent plus driftkostnadsprocent. Under 100 % betyder att försäkringsrörelsen går med vinst före kapitalavkastning.
+    term: Tecknad premie (written premium)
+    definition: Premie för avtal som tecknats eller förnyats under perioden, oavsett vilken tid försäkringen täcker.
+    tags:
+      - Nyckeltal och uppföljning
   - type: term
-    term: Skadeprocent
-    definition: Skadekostnad (inklusive reservförändring) delat med intjänad premie. Loss ratio.
+    term: Intjänad premie (earned premium)
+    definition: Den del av premien som avser försäkringstid som redan har passerat.
+    tags:
+      - Nyckeltal och uppföljning
   - type: term
-    term: Intjänad premie
-    definition: Den del av tecknad premie som hör till den risktid som förflutit under perioden. Earned premium.
+    term: Skadeprocent (loss ratio)
+    definition: Skadekostnad delat med intjänad premie.
+    tags:
+      - Nyckeltal och uppföljning
   - type: term
-    term: Premiereserv
-    definition: Reserv för den del av premien som avser återstående risktid efter balansdagen. Under Solvens II beräknas den som bästa skattning av framtida kassaflöden för ingångna avtal.
+    term: Driftskostnadsprocent (expense ratio)
+    definition: Driftskostnader delat med intjänad premie.
+    tags:
+      - Nyckeltal och uppföljning
   - type: term
-    term: Bästa skattning
-    definition: Best estimate. Sannolikhetsvägt medelvärde av framtida kassaflöden, diskonterat med riskfri ränta. Grund för tekniska avsättningar under Solvens II.
+    term: Totalkostnadsprocent (combined ratio)
+    definition: Skadeprocent + driftskostnadsprocent. Under 100 % betyder försäkringsteknisk vinst.
+    tags:
+      - Nyckeltal och uppföljning
   - type: term
-    term: Riskmarginal
-    definition: Tillägg till bästa skattningen under Solvens II som motsvarar kostnaden för att hålla kapital för att täcka åtagandena till run-off. Beräknas med cost-of-capital-metoden.
+    term: Rullande 12 månader (R12)
+    definition: Nyckeltal beräknat på de senaste tolv månaderna. Jämnar ut säsong och visar trend.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: term
+    term: YTD
+    definition: Year To Date. Ackumulerat från årets början till aktuell period.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: term
+    term: Run-off (avvecklingsresultat)
+    definition: Förändring i bedömd ultimo för tidigare skadeår sedan förra bokslutet. Sänkt ultimo ger avvecklingsvinst, höjd ultimo avvecklingsförlust.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: term
+    term: Ultimo change
+    definition: Skillnaden i bedömd ultimo för ett skadeår mellan två bokslutstillfällen.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: qa
+    question: Vad säger ett negativt avvecklingsresultat om tidigare reserver?
+    answer: Att de var för låga. Ultimo för gamla skadeår har höjts.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: qa
+    question: Varför tittar man på skadeprocent per skadeår och inte bara per bokföringsår?
+    answer: Per skadeår matchas skador mot premien för samma period. Per bokföringsår blandas årets skador med run-off från gamla år.
+    tags:
+      - Nyckeltal och uppföljning
   - type: truefalse
-    statement: Combined ratio inkluderar kapitalavkastning.
+    statement: Combined ratio över 100 % betyder att bolaget säkert går med förlust totalt.
     answer: false
-    explanation: Combined ratio avser bara försäkringsrörelsen, skador plus driftkostnader i relation till premie.
+    explanation: Det betyder försäkringsteknisk förlust. Kapitalavkastning kan väga upp.
+    tags:
+      - Nyckeltal och uppföljning
+  - type: mcq
+    question: Vilken premie står i nämnaren i skadeprocenten?
+    options:
+      - Tecknad premie
+      - Intjänad premie
+      - Ej intjänad premie
+      - Budgeterad premie
+    correct: 1
+    tags:
+      - Nyckeltal och uppföljning
   - type: truefalse
     statement: Under Solvens II diskonteras bästa skattningen med riskfri ränta.
     answer: true
+    tags:
+      - Bokslut
   - type: mcq
     question: Combined ratio är 97 %. Vad innebär det?
     options:
@@ -34,6 +85,10 @@ items:
       - Skadeprocenten är 97 %
       - Driftkostnaderna är 3 % av premien
     correct: 1
+    tags:
+      - Bokslut
   - type: qa
     question: Varför görs en nyckelkontroll mellan reserver i bokföringen och reserver i det aktuariella systemet?
     answer: För att säkerställa att de reserver som bokförs är desamma som aktuariefunktionen beräknat, så att inga avvikelser uppstår i överföringen mellan system eller vid manuella justeringar.
+    tags:
+      - Bokslut
