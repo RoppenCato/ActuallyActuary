@@ -44,6 +44,26 @@ export function SettingsPage() {
     `${REPO}/issues/new?title=${encodeURIComponent('Flaggade kort att ta bort')}` +
     `&body=${encodeURIComponent(`Ta bort eller skriv om dessa kort:\n\n${flaggedText}\n`)}`
 
+  const forceUpdate = async () => {
+    setMsg('Letar efter ny version…')
+    try {
+      const regs = await navigator.serviceWorker?.getRegistrations?.() ?? []
+      await Promise.all(regs.map((r) => r.update()))
+    } catch { /* ignore */ }
+    setTimeout(() => location.reload(), 800)
+  }
+
+  const hardReset = async () => {
+    setMsg('Rensar…')
+    try {
+      const regs = await navigator.serviceWorker?.getRegistrations?.() ?? []
+      await Promise.all(regs.map((r) => r.unregister()))
+      const keys = await caches?.keys?.() ?? []
+      await Promise.all(keys.map((k) => caches.delete(k)))
+    } catch { /* ignore */ }
+    location.href = location.pathname + '?t=' + Date.now()
+  }
+
   const copyFlagged = async () => {
     try {
       await navigator.clipboard.writeText(flaggedText)
@@ -118,6 +138,16 @@ export function SettingsPage() {
         >
           Nollställ progress
         </button>
+      </section>
+
+      <section className="glass flex flex-col gap-3 p-4">
+        <h2 className="font-semibold">App</h2>
+        <p className="text-sm text-slate-400">Version: byggd {__BUILD_TIME__} UTC</p>
+        <div className="flex gap-2">
+          <button className="btn-ghost flex-1 text-sm" onClick={forceUpdate}>Uppdatera appen</button>
+          <button className="btn-ghost flex-1 text-sm" onClick={hardReset}>Rensa cache</button>
+        </div>
+        <p className="text-xs text-slate-500">"Rensa cache" tar bort den sparade appversionen och hämtar allt på nytt. Din progress påverkas inte.</p>
       </section>
 
       <section className="glass p-4 text-sm text-slate-400">
