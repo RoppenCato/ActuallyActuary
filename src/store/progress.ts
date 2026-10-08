@@ -7,12 +7,15 @@ export type Streak = { count: number; lastDay: string; freezes: number; best: nu
 export type ProgressState = {
   version: 1
   cards: Record<string, CardState>
+  /** Cards the user has flagged as bad. Excluded from sessions until removed from content. */
+  flagged: Record<string, number>
   xp: number
   streak: Streak
   stats: { answered: number; correct: number; sessions: number }
   settings: { sound: boolean; sessionSize: number }
 
   answer: (itemId: string, grade: Grade) => { xpGained: number; streakChanged: boolean }
+  toggleFlag: (itemId: string) => void
   finishSession: () => void
   setSetting: <K extends keyof ProgressState['settings']>(key: K, value: ProgressState['settings'][K]) => void
   exportJson: () => string
@@ -47,6 +50,7 @@ export function levelFromXp(xp: number): { level: number; into: number; needed: 
 const initial = {
   version: 1 as const,
   cards: {},
+  flagged: {},
   xp: 0,
   streak: { count: 0, lastDay: '', freezes: 1, best: 0 },
   stats: { answered: 0, correct: 0, sessions: 0 },
@@ -94,13 +98,21 @@ export const useProgress = create<ProgressState>()(
         return { xpGained, streakChanged }
       },
 
+      toggleFlag: (itemId) =>
+        set((s) => {
+          const flagged = { ...s.flagged }
+          if (flagged[itemId]) delete flagged[itemId]
+          else flagged[itemId] = Date.now()
+          return { flagged }
+        }),
+
       finishSession: () => set((s) => ({ stats: { ...s.stats, sessions: s.stats.sessions + 1 }, xp: s.xp + 20 })),
 
       setSetting: (key, value) => set((s) => ({ settings: { ...s.settings, [key]: value } })),
 
       exportJson: () => {
-        const { cards, xp, streak, stats, settings, version } = get()
-        return JSON.stringify({ version, exportedAt: new Date().toISOString(), cards, xp, streak, stats, settings }, null, 2)
+        const { cards, flagged, xp, streak, stats, settings, version } = get()
+        return JSON.stringify({ version, exportedAt: new Date().toISOString(), cards, flagged, xp, streak, stats, settings }, null, 2)
       },
 
       importJson: (json) => {
@@ -109,6 +121,7 @@ export const useProgress = create<ProgressState>()(
           if (!d || typeof d !== 'object' || !d.cards) return false
           set({
             cards: d.cards ?? {},
+            flagged: d.flagged ?? {},
             xp: d.xp ?? 0,
             streak: { ...initial.streak, ...(d.streak ?? {}) },
             stats: { ...initial.stats, ...(d.stats ?? {}) },

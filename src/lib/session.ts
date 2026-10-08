@@ -1,4 +1,6 @@
+import { useMemo } from 'react'
 import type { Item } from '../content/types'
+import { useProgress } from '../store/progress'
 import type { CardState } from './srs'
 import { isDue } from './srs'
 
@@ -35,4 +37,10 @@ export function countDue(items: Item[], cards: Record<string, CardState>): numbe
 
 export function countNew(items: Item[], cards: Record<string, CardState>): number {
   return items.filter((i) => !cards[i.id] || cards[i.id].seen === 0).length
+}
+
+/** Items minus the ones the user has flagged as bad. */
+export function useActiveItems(items: Item[]): Item[] {
+  const flagged = useProgress((s) => s.flagged)
+  return useMemo(() => items.filter((i) => !flagged[i.id]), [items, flagged])
 }

@@ -5,7 +5,7 @@ import confetti from 'canvas-confetti'
 import { allItems, getCategory, getSubcategory } from '../content/loader'
 import type { Item } from '../content/types'
 import { useProgress, levelFromXp } from '../store/progress'
-import { buildQueue } from '../lib/session'
+import { buildQueue, useActiveItems } from '../lib/session'
 import type { Grade } from '../lib/srs'
 import { sfx } from '../lib/sound'
 import { Exercise } from '../components/exercises'
@@ -21,12 +21,15 @@ export function PlayPage() {
   const answer = useProgress((s) => s.answer)
   const finishSession = useProgress((s) => s.finishSession)
   const xp = useProgress((s) => s.xp)
+  const flagged = useProgress((s) => s.flagged)
+  const toggleFlag = useProgress((s) => s.toggleFlag)
 
-  const scope: Item[] | null = useMemo(() => {
+  const rawScope: Item[] | null = useMemo(() => {
     if (catId === 'all') return allItems
     if (subId) return getSubcategory(catId, subId)?.items ?? null
     return getCategory(catId)?.subcategories.flatMap((s) => s.items) ?? null
   }, [catId, subId])
+  const scope = useActiveItems(rawScope ?? [])
 
   const title = catId === 'all' ? 'Daglig träning' : subId ? getSubcategory(catId, subId)?.name : getCategory(catId)?.name
 
@@ -37,6 +40,7 @@ export function PlayPage() {
   const [combo, setCombo] = useState(0)
   const [bestCombo, setBestCombo] = useState(0)
   const [floats, setFloats] = useState<{ id: number; text: string }[]>([])
+  const [toast, setToast] = useState('')
   const startXp = useRef(xp)
   const startLevel = useRef(levelFromXp(xp).level)
   const requeued = useRef(new Set<string>())
@@ -55,7 +59,7 @@ export function PlayPage() {
     }
   }, [done, finishSession, sound])
 
-  if (!scope) return <Navigate to="/" replace />
+  if (!rawScope) return <Navigate to="/" replace />
 
   if (queue.length === 0) {
     return (
@@ -91,6 +95,18 @@ export function PlayPage() {
     setIdx(idx + 1)
   }
 
+  const onFlag = () => {
+    toggleFlag(current.id)
+    const nowFlagged = !flagged[current.id]
+    setToast(nowFlagged ? 'Kortet är flaggat och visas inte igen. Ångra under Inställningar.' : 'Flaggan borttagen.')
+    setTimeout(() => setToast(''), 2500)
+    if (nowFlagged) {
+      // Drop any later copies of the card (e.g. a re-queued one) and move on without grading.
+      setQueue(queue.filter((it, i) => i <= idx || it.id !== current.id))
+      setIdx(idx + 1)
+    }
+  }
+
   if (done) {
     const correct = results.filter((r) => r.grade > 0).length
     const gained = xp - startXp.current
@@ -120,11 +136,20 @@ export function PlayPage() {
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
           <motion.div
             className="h-full bg-gradient-to-r from-brand-400 to-accent-400"
+            initial={{ width: 0 }}
             animate={{ width: `${(idx / queue.length) * 100}%` }}
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
           />
         </div>
         <span className="text-xs tabular-nums text-slate-400">{idx + 1}/{queue.length}</span>
+        <button
+          onClick={onFlag}
+          className="rounded-lg p-1 text-base opacity-60 transition hover:opacity-100 active:scale-90"
+          aria-label="Flagga kortet som dåligt"
+          title="Flagga kortet som dåligt"
+        >
+          🚩
+        </button>
         <AnimatePresence>
           {combo >= 3 && (
             <motion.span
@@ -140,6 +165,19 @@ export function PlayPage() {
         </AnimatePresence>
       </div>
       <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">{title}</div>
+
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="rounded-xl border border-rose-400/30 bg-rose-500/15 px-3 py-2 text-sm text-rose-100"
+          >
+            🚩 {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="relative flex flex-1 flex-col">
         <AnimatePresence mode="wait">

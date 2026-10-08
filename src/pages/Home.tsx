@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { categories, allItems } from '../content/loader'
 import { useProgress, levelFromXp } from '../store/progress'
-import { countDue, countNew } from '../lib/session'
+import { countDue, countNew, useActiveItems } from '../lib/session'
 import { mastery } from '../lib/srs'
 import { ProgressRing } from '../components/ProgressRing'
 
@@ -11,17 +11,20 @@ export function Home() {
   const xp = useProgress((s) => s.xp)
   const streak = useProgress((s) => s.streak)
   const stats = useProgress((s) => s.stats)
+  const flagged = useProgress((s) => s.flagged)
+  const flaggedIds = new Set(Object.keys(flagged))
   const { level } = levelFromXp(xp)
+  const active = useActiveItems(allItems)
 
-  const dueAll = countDue(allItems, cards)
-  const masteredAll = allItems.filter((i) => mastery(cards[i.id]) === 'mastered').length
+  const dueAll = countDue(active, cards)
+  const masteredAll = active.filter((i) => mastery(cards[i.id]) === 'mastered').length
 
   return (
     <div className="flex flex-col gap-5 pt-2">
       <section className="glass p-5">
         <div className="flex items-center gap-4">
-          <ProgressRing value={allItems.length ? masteredAll / allItems.length : 0} size={72} stroke={7}>
-            <span className="text-sm">{Math.round((allItems.length ? masteredAll / allItems.length : 0) * 100)}%</span>
+          <ProgressRing value={active.length ? masteredAll / active.length : 0} size={72} stroke={7}>
+            <span className="text-sm">{Math.round((active.length ? masteredAll / active.length : 0) * 100)}%</span>
           </ProgressRing>
           <div className="flex-1">
             <h1 className="text-xl font-bold">Hej! 👋</h1>
@@ -29,7 +32,7 @@ export function Home() {
               Nivå {level} · {xp} XP · {streak.count} dagars streak
             </p>
             <p className="mt-1 text-sm text-slate-400">
-              {masteredAll} av {allItems.length} kort bemästrade · {stats.sessions} pass
+              {masteredAll} av {active.length} kort bemästrade · {stats.sessions} pass
             </p>
           </div>
         </div>
@@ -41,7 +44,7 @@ export function Home() {
       <h2 className="px-1 text-sm font-semibold uppercase tracking-wider text-slate-400">Kategorier</h2>
       <div className="flex flex-col gap-3">
         {categories.map((c, idx) => {
-          const items = c.subcategories.flatMap((s) => s.items)
+          const items = c.subcategories.flatMap((s) => s.items).filter((i) => !flaggedIds.has(i.id))
           const mastered = items.filter((i) => mastery(cards[i.id]) === 'mastered').length
           const due = countDue(items, cards)
           const fresh = countNew(items, cards)

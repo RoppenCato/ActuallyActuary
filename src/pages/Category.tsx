@@ -17,9 +17,11 @@ export function CategoryPage() {
   const { catId = '' } = useParams()
   const cat = getCategory(catId)
   const cards = useProgress((s) => s.cards)
+  const flagged = useProgress((s) => s.flagged)
   if (!cat) return <Navigate to="/" replace />
 
-  const items = cat.subcategories.flatMap((s) => s.items)
+  const subs = cat.subcategories.map((s) => ({ ...s, items: s.items.filter((i) => !flagged[i.id]) }))
+  const items = subs.flatMap((s) => s.items)
   const due = countDue(items, cards)
 
   return (
@@ -38,7 +40,7 @@ export function CategoryPage() {
       </Link>
 
       <div className="flex flex-col gap-3">
-        {cat.subcategories.map((s, idx) => {
+        {subs.map((s, idx) => {
           const counts: Record<Mastery, number> = { new: 0, learning: 0, solid: 0, mastered: 0 }
           for (const i of s.items) counts[mastery(cards[i.id])]++
           const subDue = countDue(s.items, cards)

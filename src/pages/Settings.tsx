@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useProgress } from '../store/progress'
-import { allItems, categories } from '../content/loader'
+import { allItems, categories, itemsById } from '../content/loader'
+import { itemPrompt } from '../content/types'
+
+const REPO = 'https://github.com/RoppenCato/ActuallyActuary'
 
 export function SettingsPage() {
   const settings = useProgress((s) => s.settings)
@@ -10,6 +13,8 @@ export function SettingsPage() {
   const importJson = useProgress((s) => s.importJson)
   const reset = useProgress((s) => s.reset)
   const stats = useProgress((s) => s.stats)
+  const flagged = useProgress((s) => s.flagged)
+  const toggleFlag = useProgress((s) => s.toggleFlag)
   const fileRef = useRef<HTMLInputElement>(null)
   const [msg, setMsg] = useState('')
 
@@ -29,10 +34,55 @@ export function SettingsPage() {
     setMsg(ok ? 'Progress importerad.' : 'Kunde inte läsa filen.')
   }
 
+  const flaggedList = Object.keys(flagged)
+    .sort((a, b) => flagged[a] - flagged[b])
+    .map((id) => ({ id, item: itemsById.get(id) }))
+  const flaggedText = flaggedList
+    .map(({ id, item }) => `- ${id}${item ? ` — ${itemPrompt(item)}` : ' (finns inte längre)'}`)
+    .join('\n')
+  const issueUrl =
+    `${REPO}/issues/new?title=${encodeURIComponent('Flaggade kort att ta bort')}` +
+    `&body=${encodeURIComponent(`Ta bort eller skriv om dessa kort:\n\n${flaggedText}\n`)}`
+
+  const copyFlagged = async () => {
+    try {
+      await navigator.clipboard.writeText(flaggedText)
+      setMsg('Listan är kopierad. Klistra in den i chatten med Claude.')
+    } catch {
+      setMsg('Kunde inte kopiera. Markera texten nedan och kopiera manuellt.')
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4 pt-2">
       <Link to="/" className="text-sm text-slate-400 hover:text-white">← Hem</Link>
       <h1 className="text-2xl font-bold">Inställningar</h1>
+
+      <section className="glass flex flex-col gap-3 p-4">
+        <h2 className="font-semibold">🚩 Flaggade kort ({flaggedList.length})</h2>
+        <p className="text-sm text-slate-400">
+          Kort du flaggat under träning visas inte igen. Skicka listan till Claude så tas de bort ur innehållet.
+        </p>
+        {flaggedList.length > 0 && (
+          <>
+            <ul className="flex flex-col gap-1 text-sm">
+              {flaggedList.map(({ id, item }) => (
+                <li key={id} className="flex items-start gap-2 rounded-lg bg-white/5 px-3 py-2">
+                  <span className="flex-1">
+                    {item ? itemPrompt(item) : id}
+                    <span className="block text-xs text-slate-500">{id}</span>
+                  </span>
+                  <button className="text-xs text-slate-400 hover:text-white" onClick={() => toggleFlag(id)}>Ångra</button>
+                </li>
+              ))}
+            </ul>
+            <div className="flex gap-2">
+              <a href={issueUrl} target="_blank" rel="noreferrer" className="btn-primary flex-1 text-sm">Skicka som GitHub-ärende</a>
+              <button className="btn-ghost flex-1 text-sm" onClick={copyFlagged}>Kopiera lista</button>
+            </div>
+          </>
+        )}
+      </section>
 
       <section className="glass flex flex-col gap-3 p-4">
         <label className="flex items-center justify-between">
