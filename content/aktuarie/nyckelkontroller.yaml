@@ -1,0 +1,527 @@
+name: Nyckelkontroller K01–K04
+description: Syfte, gränsvärden, typiska skillnader och kommentarer för K01, K02, K03 och K04
+items:
+  - type: term
+    term: Nyckelkontroll
+    definition: En dokumenterad kontroll som ska visa att data och belopp i reservsättningen är korrekta och kompletta. Görs varje kvartal, kommenteras och signeras.
+    tags:
+      - Översikt
+  - type: term
+    term: K01
+    definition: Stämmer av utbetalda skador i skadedatat mot det som är bokfört i huvudboken (E1).
+    tags:
+      - Översikt
+  - type: term
+    term: K02
+    definition: Kontrollerar att reserverna som ligger bokade i huvudboken är desamma som räknades fram i bokslutet.
+    tags:
+      - Översikt
+  - type: term
+    term: K03
+    definition: "Kontrollerar att de bokförda reserverna följer reservanalysen (modellen): skadeprocent för innevarande skadeår och avveckling för tidigare skadeår."
+    tags:
+      - Översikt
+  - type: term
+    term: K04
+    definition: "Rimlighetskontroll av Solvens II-premiereserven: innevarande kvartal mot föregående per B-klass, med förklaring av förändringarna."
+    tags:
+      - Översikt
+  - type: term
+    term: E1
+    definition: Huvudboken, ekonomisystemet där utbetalningar och reserver är bokförda.
+    tags:
+      - Översikt
+  - type: term
+    term: Korrekt/Komplett
+    definition: Kontrollkategorin för K01–K03. Korrekt = beloppen stämmer. Komplett = inget saknas.
+    tags:
+      - Översikt
+  - type: term
+    term: Sign-off
+    definition: Att den som utfört kontrollen signerar att varje avvikelse är utredd och kommenterad.
+    tags:
+      - Översikt
+  - type: term
+    term: Avvikelse
+    definition: En skillnad som inte kan förklaras eller åtgärdas. Ska eskaleras och rapporteras, inte bara kommenteras.
+    tags:
+      - Översikt
+  - type: qa
+    question: Vilken fråga svarar var och en av K01, K02 och K03 på?
+    answer: "K01: är indatat (utbetalt) rätt? K02: bokades det vi räknade fram? K03: följer det bokade den beslutade modellen?"
+    tags:
+      - Översikt
+  - type: qa
+    question: Varför bygger K03 på att K01 och K02 är gjorda?
+    answer: Fel i utbetalningsdata eller i bokningen slår igenom i jämförelsen mot modellen. De måste vara uteslutna först.
+    tags:
+      - Översikt
+  - type: qa
+    question: Vem utför nyckelkontrollerna och hur ofta?
+    answer: Beräkningsansvarig reservsättning, kvartalsvis.
+    tags:
+      - Översikt
+  - type: qa
+    question: Vad ska en bra kontrollkommentar innehålla?
+    answer: Orsak, omfattning (belopp och period) och påverkan. Den ska säga varför, inte bara vad som ändrats.
+    tags:
+      - Översikt
+  - type: qa
+    question: Vad gör du om du inte kan förklara en skillnad?
+    answer: Skriver ärligt vad som är okänt och vem som kontaktats, och eskalerar. En gissning är ingen förklaring.
+    tags:
+      - Översikt
+  - type: truefalse
+    statement: '"Troligtvis timing" räcker som kommentar på en flaggad skillnad.'
+    answer: false
+    explanation: Kommentaren ska vara belagd med belopp, period och orsak.
+    tags:
+      - Översikt
+  - type: mcq
+    question: Vilken kontroll gäller premiereserven?
+    options:
+      - K01
+      - K02
+      - K03
+      - K04
+    correct: 3
+    tags:
+      - Översikt
+  - type: order
+    prompt: Kontrollernas logiska kedja
+    steps:
+      - K01 – utbetalt i skadedata stämmer med huvudboken
+      - K02 – bokade reserver stämmer med bokslutsberäkningen
+      - K03 – bokade reserver följer reservmodellen
+      - K04 – premiereservens förändring kan förklaras
+    tags:
+      - Översikt
+  - type: term
+    term: Syftet med K01
+    definition: Säkerställa att skadedatat som reservberäkningarna bygger på är korrekt och komplett, genom att jämföra utbetalt mot bokföringen.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: IClass
+    definition: Produktklassen som K01 jämförs på, tillsammans med valuta.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: YTD och senaste månad
+    definition: De två perspektiven i K01. YTD = utbetalt hittills i år. Senaste månad = bara sista månaden.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Gränsvärde i K01
+    definition: En skillnad flaggas om den är över 1 000 000 SEK (omräknat till lokal valuta) eller över 10 %, per produktklass eller för affären som helhet.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Matchade och omatchade rader
+    definition: Matchade = produktklass och valuta finns i både skadedata och huvudbok. Omatchade = finns bara i den ena källan.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Avvikelselogg
+    definition: Logg där alla skillnader som passerat gränsvärdet förs in, med åtgärd, prioritet, status och deadline.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Timingskillnad
+    definition: Utbetalning som hamnat i olika perioder i de två källorna. Syns i senaste månad men jämnar ut sig YTD eller vänder nästa period.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Klassningsskillnad
+    definition: Samma belopp ligger på olika produktklasser i de två källorna. Syns som två lika stora skillnader med motsatt tecken.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Varför jämförs utbetalt just mot huvudboken?
+    answer: Huvudboken är den officiella sanningen. Om skadedatat avviker bygger reserverna på fel underlag.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: På vilket datum jämförs utbetalningarna i K01?
+    answer: Betalningsdatum, inte skadedatum.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Vad betyder en positiv skillnad i K01?
+    answer: Skadedatat visar mer utbetalt än huvudboken.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Vad signalerar en omatchad rad?
+    answer: Oftast ett mappningsproblem, inte nödvändigtvis ett beloppsfel. Ska alltid kontrolleras, oavsett belopp.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Två produktklasser i samma land har +50 000 och −50 000 i skillnad. Vad är den troliga orsaken?
+    answer: Klassningsskillnad. Nettot är noll, så totalen påverkas inte.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Skillnaden finns bara i senaste månad och är nära noll YTD. Vad tyder det på?
+    answer: Timing.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: qa
+    question: Varför ska man summera skillnaderna per land själv?
+    answer: Gränsvärdet gäller även affären som helhet. Många små skillnader åt samma håll kan tillsammans vara väsentliga.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: truefalse
+    statement: En skillnad under gränsvärdet behöver aldrig tittas på.
+    answer: false
+    explanation: Omatchade rader kontrolleras alltid, och små skillnader kan summera till något väsentligt.
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: mcq
+    question: Vad jämför K01?
+    options:
+      - Utbetalt mot huvudbok
+      - Reserver mot huvudbok
+      - Skadeprocent mot modell
+      - Premiereserv mot förra kvartalet
+    correct: 0
+    tags:
+      - K01 – utbetalt mot huvudboken
+  - type: term
+    term: Syftet med K02
+    definition: Minimera risken att reserverna lästs in fel i ekonomisystemet. Det som ligger bokat ska vara det som räknades fram.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Reservtyperna i K02
+    definition: "Fem stycken: Case (RBNS), IBNR, RM, ULAE och ULAE RM."
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Bokföringsfil
+    definition: Filen med reservförändringar som skickas från reservsättningen och läses in i huvudboken.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Gränsvärde i K02
+    definition: Finns inget. Varje skillnad ska kunna förklaras, utom avrundning på ±1.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Nyckelmismatch
+    definition: Samma belopp ligger på olika resultatställe, valuta eller år i de två källorna. Syns som två rader med lika belopp och motsatt tecken.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Framrullat saldo
+    definition: Gammalt saldo som ligger kvar i huvudboken på ett avvecklat skadeår trots att reserven är noll.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: På vilken nivå jämförs reserverna i K02?
+    answer: Per bolag, resultatställe, produkt, skadeår och valuta.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Vad betyder en positiv skillnad i K02?
+    answer: "Mer är bokat i huvudboken än vad bokslutsberäkningen säger. Obs: omvänt mot K01."
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Vilka reservtyper tittar du på först och varför?
+    answer: Case och IBNR. De styrs direkt av bokföringsfilen, så noll skillnad där visar att inläsningen fungerar.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Hur hänger RM ihop med Case och IBNR i bokslutsberäkningen?
+    answer: RM är en fast procentsats av reserven (Case + IBNR).
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Hur hänger ULAE ihop med Case och IBNR i bokslutsberäkningen?
+    answer: ULAE är en fast sats per produkt gånger reserven (Case + IBNR).
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Huvudboken visar samma saldo som förra månadens beräkning. Vad har troligen hänt?
+    answer: Bokningen är inte gjord. Filen är inte inläst.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Skillnaden är exakt dubbla den förväntade förändringen. Vad tyder det på?
+    answer: Förändringen har bokats med fel tecken.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Varför ska man leta efter motsvarande belopp med omvänt tecken innan man kallar något ett bokningsfel?
+    answer: "Det kan vara en nyckelmismatch: beloppet är rätt men ligger på fel resultatställe, valuta eller år."
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: qa
+    question: Vad gör du om felet inte kan åtgärdas?
+    answer: Informerar aktuariefunktionen och rapporterar en avvikelse.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: truefalse
+    statement: K02 har samma gränsvärde som K01.
+    answer: false
+    explanation: K02 har inget gränsvärde.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: truefalse
+    statement: Om Case och IBNR stämmer men ULAE avviker systematiskt ligger felet troligen i inläsningen av filen.
+    answer: false
+    explanation: Inläsningen fungerar. Det pekar på hur ULAE beräknas eller bokas.
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: mcq
+    question: Vilken skillnad behöver ingen kommentar i K02?
+    options:
+      - ±1 (avrundning)
+      - Under 10 %
+      - Under 1 MSEK
+      - Ingen, allt kommenteras
+    correct: 0
+    tags:
+      - K02 – bokade reserver mot bokslutet
+  - type: term
+    term: Syftet med K03
+    definition: Säkerställa att reserverna som bokfördes vid kvartalsbokslutet följer reservanalysen som gjordes inför kvartalsskiftet.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Modell (i K03)
+    definition: Den senaste beslutade reservanalysen, den som godkändes på Challenge Meeting.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Bokfört (i K03)
+    definition: Det som faktiskt ligger i huvudboken efter bokslutet.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: YTD-delen
+    definition: Jämför skadeprocent och skadekostnad (ultimo) för innevarande skadeår, modell mot bokfört.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Run-off-delen
+    definition: Jämför avvecklingsresultatet för tidigare skadeår, modell mot bokfört.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: LR Diff
+    definition: Bokförd skadeprocent minus modellens skadeprocent.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: LR Diff i SEK
+    definition: "Skadeprocentskillnaden omräknad till kronor: bokförd premie × LR-skillnad × valutakurs."
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: AvE-justering
+    definition: Justering av ultimo utifrån faktiskt utfall mot förväntat sedan modellen togs fram. Ingår i det bokförda men inte i modellen.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Bokförd avveckling
+    definition: Reserv nu minus (reserv vid årsskiftet minus betalt i år), för tidigare skadeår. Positiv = reserven högre än väntat = avvecklingsförlust.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Modellavveckling
+    definition: Modellens ultimo vid årsskiftet jämfört med modellens senaste ultimo, för tidigare skadeår.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Vilka tal är viktigast i YTD-delen?
+    answer: Skillnaden i skadeprocent, samma skillnad i kronor och skillnaden i ultimo.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Varför skiljer sig Paid, RBNS och IBNR ofta mycket mellan modell och bokfört utan att det är ett fel?
+    answer: Modellen gäller analysdatumet, bokfört gäller bokslutsdatumet. Utbetalningar däremellan flyttar belopp från IBNR till Paid. Det är ultimo som ska stämma, inte fördelningen.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Vad är den vanligaste förklaringen till att bokförd ultimo skiljer sig från modellens?
+    answer: AvE-justeringen. Den ligger i det bokförda men inte i modellen.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Hur bekräftar du att en ultimoskillnad beror på AvE?
+    answer: Summera AvE-justeringen för produkten och skadeåret och se att den motsvarar skillnaden i ultimo.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Ultimoskillnaden är större än AvE-justeringen. Vad kan resten vara?
+    answer: Golvet att ultimo inte får understiga Paid + RBNS, en manuell rättelse eller ett bokningsfel (K02).
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Varför är skillnaden i intjänad premie nästan aldrig noll?
+    answer: Modellen använder predikterad premie, det bokförda faktisk premie. Frågan är om skillnaden är rimlig.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Vad betyder det om modellens och det bokförda avvecklingsresultatet är lika?
+    answer: Att gamla skadeår har bokats enligt modellen. Ingen kommentar utöver det behövs.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Varför visar gamla skadeår (2020 och äldre) alltid en skillnad när något rör sig?
+    answer: Modellen har ingen avveckling för dem, så all bokförd rörelse syns som skillnad och måste förklaras separat.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: qa
+    question: Vad måste du kontrollera innan du börjar analysera K03?
+    answer: Att jämförelsen görs mot rätt modell, den som beslutades på senaste Challenge Meeting.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: truefalse
+    statement: K03 har ett gränsvärde på 10 %.
+    answer: false
+    explanation: K03 har inget gränsvärde. Varje skillnad förklaras eller eskaleras.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: truefalse
+    statement: En stor skillnad i IBNR mellan modell och bokfört är alltid ett fel.
+    answer: false
+    explanation: Fördelningen mellan Paid, RBNS och IBNR förskjuts över tid. Titta på ultimo.
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: mcq
+    question: Vad jämför K03 för tidigare skadeår?
+    options:
+      - Skadeprocent
+      - Avvecklingsresultat
+      - Utbetalt mot huvudbok
+      - Premiereserv
+    correct: 1
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: mcq
+    question: Bokförd reserv för ett gammalt skadeår är högre än väntat. Vad är det?
+    options:
+      - Avvecklingsvinst
+      - Avvecklingsförlust
+      - AvE-justering
+      - Timing
+    correct: 1
+    tags:
+      - K03 – bokfört mot reservmodellen
+  - type: term
+    term: Syftet med K04
+    definition: Kontrollera att premiereserven är rimlig och att varje väsentlig förändring mot föregående kvartal kan förklaras.
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: TQ / LQ
+    definition: This Quarter och Last Quarter. K04 jämför premiereserven TQ mot LQ per B-klass.
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: Fyraeffektsbryggan
+    definition: "Uppdelning av förändringen i premiereserven i fyra effekter: volym, receivables, mix och parameter."
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: Volymeffekt
+    definition: "Förändring som beror på att UPR + HHP har ändrats. Typiska orsaker: nyteckning, förnyelsesäsong, prishöjning, valuta."
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: Receivables-effekt
+    definition: Förändring som beror på ändrade premiefordringar (FEA + FEE). Speglar normalt volymeffekten.
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: Mixeffekt
+    definition: Förändring som beror på ändrad andel UPR mot HHP. Oftast liten och räknas som restpost.
+    tags:
+      - K04 – premiereserven
+  - type: term
+    term: Parametereffekt
+    definition: Förändring som beror på ändrade antaganden (skadeprocent, kostnader, annullation, återförsäkring). Den enda effekten som kräver aktuariell motivering.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Vilka frågor ska du kunna svara på om en B-klass i K04?
+    answer: Varför ändras UPR? Vad händer i underliggande risk? Varför ändras Best Estimate totalt? Vad driver HHP?
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Hur väljer du vilka B-klasser som ska kommenteras utförligt?
+    answer: Sortera på förändring i Best Estimate, både i belopp och procent, och ta dem som sticker ut åt båda håll.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Alla delar av kassaflödet rör sig ungefär lika mycket och antagandena är oförändrade. Vad är det?
+    answer: Volym. Förklara med affärshändelsen bakom.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: En del av kassaflödet sticker ut och ett antagande har ändrats. Vad är det?
+    answer: Parameterdriven förändring. Ange vilket antagande, hur mycket och varför.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Fordringarna har inte rört sig i takt med volymen. Vad kan det bero på?
+    answer: Ändrad betalningsfrekvens eller betalningsvillkor, eller ett systembyte.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: En utlandsklass har alla belopp skalade lika mycket. Vad är det?
+    answer: Valutaeffekt.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Stor procentuell förändring men litet belopp. Hur kommenterar du?
+    answer: Proportionerligt. Små portföljer är slumpkänsliga.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: När behöver nettoreserven en egen kommentar?
+    answer: När den rör sig annorlunda än brutto, dvs. när återförsäkringsvillkoren har ändrats.
+    tags:
+      - K04 – premiereserven
+  - type: qa
+    question: Varför spelar ordningen i en stegvis brygga roll?
+    answer: Effekterna samverkar, så den som räknas först får en annan del av samspelet. Ange vilken ordning som använts.
+    tags:
+      - K04 – premiereserven
+  - type: truefalse
+    statement: En bra K04-kommentar beskriver vad som har ändrats.
+    answer: false
+    explanation: Den ska förklara varför, med konkret orsak och belopp.
+    tags:
+      - K04 – premiereserven
+  - type: truefalse
+    statement: Det är bättre att tvinga ihop bryggan än att lämna en oförklarad rest.
+    answer: false
+    explanation: Erkänn den oförklarade resten.
+    tags:
+      - K04 – premiereserven
+  - type: mcq
+    question: Vilken effekt kräver aktuariell motivering?
+    options:
+      - Volym
+      - Receivables
+      - Mix
+      - Parameter
+    correct: 3
+    tags:
+      - K04 – premiereserven
+  - type: order
+    prompt: Analys av en B-klass i K04
+    steps:
+      - Se hur mycket Best Estimate ändrats i belopp och procent
+      - Bryt ner förändringen i UPR, HHP och fordringar
+      - Kontrollera om något antagande har ändrats
+      - Dela upp i volym, receivables, mix och parameter
+      - Ta reda på affärshändelsen bakom
+      - Skriv kommentaren med orsak, belopp och eventuell oförklarad rest
+    tags:
+      - K04 – premiereserven
+
